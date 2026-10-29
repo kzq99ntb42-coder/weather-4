@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <div class="phone-shell">
+      <div class="weather-app">
+        <div class="status-bar">
+          
+          <div class="status-icons">
+            
+          </div>
+        </div>
+
+        <header class="top-bar">
+          <button class="icon-button" aria-label="Menu">☰</button>
+          <div class="location-container">
+            <span class="location-name" id="locationName">San Francisco</span>
+            <button class="icon-button small" aria-label="Current location">📍</button>
+          </div>
+          <button class="icon-button" aria-label="Search">⌕</button>
+        </header>
+
+        <div class="search-wrap">
+          <input id="citySearch" type="text" placeholder="Search city" value="San Francisco" />
+        </div>
+
+        <main class="content">
+          <section class="hero-card">
+            <div class="weather-meta">
+              <span id="weatherCondition">Partly Cloudy</span>
+              <span id="weatherDate">Tue, 12 Sep</span>
+            </div>
+
+            <div class="temperature-row">
+              <div class="temp-block">
+                <span class="temperature" id="tempValue">72°</span>
+              </div>
+              <div class="unit-toggle" aria-label="Temperature unit toggle">
+                <button class="unit active" data-unit="C">°C</button>
+                <button class="unit" data-unit="F">°F</button>
+              </div>
+            </div>
+
+            <div class="range-row">
+              <span>H <strong id="highTemp">75°</strong></span>
+              <span>L <strong id="lowTemp">61°</strong></span>
+            </div>
+          </section>
+
+          <section class="hourly-section">
+            <div class="section-head">
+              <h3>Today</h3>
+              <span>Next 24 hours</span>
+            </div>
+            <div id="hourlyForecast" class="hourly-row"></div>
+          </section>
+
+          <section class="details-grid">
+            <div class="detail-card">
+              <span class="detail-label">Sunrise</span>
+              <strong id="sunriseValue">6:28 AM</strong>
+            </div>
+            <div class="detail-card">
+              <span class="detail-label">Wind</span>
+              <strong id="windValue">12 km/h</strong>
+            </div>
+            <div class="detail-card">
+              <span class="detail-label">Humidity</span>
+              <strong id="humidityValue">63%</strong>
+            </div>
+            <div class="detail-card">
+              <span class="detail-label">Rain</span>
+              <strong id="rainValue">14%</strong>
+            </div>
+          </section>
+
+          <section class="forecast-section">
+            <div class="section-head">
+              <h3>10-day forecast</h3>
+            </div>
+            <div id="dailyForecast" class="forecast-list"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

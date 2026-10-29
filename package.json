@@ -1,0 +1,13 @@
+{
+  "name": "weatherverse",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node -e \"const fs=require('fs'); const {spawnSync}=require('child_process'); const hasBackend=fs.existsSync('backend/package.json'); const hasFrontend=fs.existsSync('frontend/package.json'); if (hasBackend && hasFrontend) { const p=spawnSync('npx', ['concurrently', 'npm --prefix backend run dev', 'npm --prefix frontend run dev -- --host 0.0.0.0'], {stdio:'inherit', shell:true}); process.exit(p.status ?? 1); } if (hasFrontend) { const p=spawnSync('npm', ['--prefix', 'frontend', 'run', 'dev', '--', '--host', '0.0.0.0'], {stdio:'inherit', shell:true}); process.exit(p.status ?? 1); } console.error('Missing frontend/package.json or backend/package.json for this repo layout.'); process.exit(1);\"",
+    "build": "node -e \"const fs=require('fs'); const {spawnSync}=require('child_process'); const hasBackend=fs.existsSync('backend/package.json'); const hasFrontend=fs.existsSync('frontend/package.json'); if (!hasFrontend) { console.error('Missing frontend/package.json for this repo layout.'); process.exit(1); } if (hasBackend) { const p=spawnSync('npm', ['--prefix', 'backend', 'run', 'build'], {stdio:'inherit', shell:true}); if (p.status) process.exit(p.status); } const p2=spawnSync('npm', ['--prefix', 'frontend', 'run', 'build'], {stdio:'inherit', shell:true}); process.exit(p2.status ?? 0);\"",
+    "start": "node -e \"const fs=require('fs'); if (fs.existsSync('backend/package.json')) { require('child_process').spawnSync('npm', ['--prefix', 'backend', 'run', 'start'], {stdio:'inherit', shell:true}); } else if (fs.existsSync('frontend/package.json')) { console.log('Frontend-only deployment detected. Use Vercel static build output instead of this start script.'); } else { console.error('No supported backend/frontend package layout found.'); process.exit(1); }\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
